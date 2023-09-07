@@ -2,7 +2,6 @@ package server
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -11,14 +10,12 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/amosehiguese/buy-more/routes"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	_ "github.com/joho/godotenv/autoload"
 )
 
-func index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "using middleware and graceful shutting down")
-}
 
 func useMiddleware(mux *chi.Mux) {
 	mux.Use(middleware.RequestID)
@@ -32,7 +29,7 @@ func Run() error {
 	mux := chi.NewRouter()
 	useMiddleware(mux)
 
-	mux.HandleFunc("/", index)
+	routes.ProductRoutes(mux)
 
 	addr := os.Getenv("ADDR")
 	readTimeout, err := strconv.Atoi(os.Getenv("READ_TIMEOUT"))
