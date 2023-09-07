@@ -1,10 +1,13 @@
 package handlers
 
 import (
-	"fmt"
+	"html/template"
 	"net/http"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "changed structure")
+	t := template.Must(template.ParseFiles("templates/index.html"))
+	t.Execute(w, nil)
+
+
 }

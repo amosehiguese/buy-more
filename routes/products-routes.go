@@ -2,9 +2,9 @@ package routes
 
 import (
 	"github.com/amosehiguese/buy-more/handlers"
-	"github.com/go-chi/chi/v5"
+	"github.com/gorilla/mux"
 )
 
-func ProductRoutes(mux *chi.Mux) {
+func ProductRoutes(mux *mux.Router) {
 	mux.HandleFunc("/", handlers.Index)
 }

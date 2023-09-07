@@ -11,13 +11,13 @@ import (
 	"time"
 
 	"github.com/amosehiguese/buy-more/routes"
-	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/gorilla/mux"
 	_ "github.com/joho/godotenv/autoload"
 )
 
 
-func useMiddleware(mux *chi.Mux) {
+func useMiddleware(mux *mux.Router) {
 	mux.Use(middleware.RequestID)
 	mux.Use(middleware.RealIP)
 	mux.Use(middleware.Logger)
@@ -26,8 +26,10 @@ func useMiddleware(mux *chi.Mux) {
 }
 
 func Run() error {
-	mux := chi.NewRouter()
+	mux := mux.NewRouter()
 	useMiddleware(mux)
+
+	mux.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("public"))))
 
 	routes.ProductRoutes(mux)
 
@@ -61,20 +63,20 @@ func gracefulShutDown(server *http.Server, addr string) {
 
 	// Listen for syscall signals for process to interrupt/quit
 	sig := make(chan os.Signal, 1)
-	signal.Notify(sig, syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT)
+	signal.Notify(sig, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT)
 	go func() {
 		<-sig
 
 		// Shutdown signal with grace period of 30 seconds
-		shutdownCtx, _ := context.WithTimeout(serverCtx, 30*time.Second)
+		shutdownCtx, shutdownCtxCancel := context.WithTimeout(serverCtx, 30*time.Second)
+		defer shutdownCtxCancel()
 
 		go func() {
 			<-shutdownCtx.Done()
 			if shutdownCtx.Err() == context.DeadlineExceeded {
-				log.Fatal("graceful shutdown timed out.. forcing exit.")
+				log.Fatal("graceful shutdown timed out... forcing exit.")
 			}
 		}()
-
 		// Trigger graceful shutdown
 		err := server.Shutdown(shutdownCtx)
 		if err != nil {
