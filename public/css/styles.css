@@ -180,7 +180,7 @@ p {
 .hero {
   min-height: 100vh;
   margin-top: -6rem;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
     url(../images/bg-image.jpg) center/cover;
   display: grid;
   place-items: center;
