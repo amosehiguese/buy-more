@@ -6,11 +6,11 @@ clean:
 
 .PHONY: build
 build:
-	go build -o bin/
+	go build -o bin/buy-more
 
 .PHONY: run
 run: build
-	./bin
+	./bin/buy-more
 
 .PHONY: mig-create
 mig-create:
