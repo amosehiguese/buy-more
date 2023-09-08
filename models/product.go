@@ -8,7 +8,7 @@ import (
 )
 
 type Category struct {
-	ID			uuid.UUID			`db:"id" validate:"required,uuid"`
+	ID				uuid.UUID			`db:"id" validate:"required,uuid"`
 	Name 			string 				`db:"name" validate:"required,lte=200"`
 	Slug			string				`db:"slug" validate:"lte=200"`
 	Products		[]Product			`db:"products"`
@@ -30,9 +30,9 @@ type Product struct{
 }
 
 type Image struct {
-	ID			uuid.UUID		`db:"id" validate:"required,uuid"`
-	ProductID		uuid.UUID 		`db:"product_id" validate:"require,uuid"`
-	Path			string			`db:"path"`
+	ID				uuid.UUID		`db:"id" validate:"required,uuid"`
+	ProductID		uuid.UUID 		`db:"product_id" validate:"required,uuid"`
+	Path			string			`db:"path" validate:"required"`
 	CreatedAt		time.Time		`db:"created_at"`
 	UpdatedAt		time.Time		`db:"updated_at"`
 
