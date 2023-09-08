@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/amosehiguese/buy-more/routes"
+	"github.com/amosehiguese/buy-more/store"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/gorilla/mux"
 	_ "github.com/joho/godotenv/autoload"
@@ -51,13 +52,14 @@ func Run() error {
 		ReadTimeout: time.Duration(readTimeout * int(time.Second)),
 		WriteTimeout: time.Duration(writeTimeout * int(time.Second)),
 		MaxHeaderBytes: 1 << 20,
-
 	}
-	gracefulShutDown(server, addr)
+
+	store.SetUpDB()
+	startServerAndGracefulShutDown(server, addr)
 	return nil
 }
 
-func gracefulShutDown(server *http.Server, addr string) {
+func startServerAndGracefulShutDown(server *http.Server, addr string) {
 		// Server run context
 	serverCtx, serverStopCtx := context.WithCancel(context.Background())
 

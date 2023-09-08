@@ -1,8 +1,8 @@
 -- Add UUID extension
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp"
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- Create categories table
-CREATE TABLE categories (
+CREATE TABLE IF NOT EXISTS categories (
   id              UUID DEFAULT uuid_generate_v4 () PRIMARY KEY,
   name            VARCHAR (200)  NOT NULL,
   slug            VARCHAR (200) NULL,
@@ -11,7 +11,7 @@ CREATE TABLE categories (
 );
 
 -- Create products table
-CREATE TABLE products (
+CREATE TABLE IF NOT EXISTS products (
   id              UUID DEFAULT uuid_generate_v4 () PRIMARY KEY,
   name            VARCHAR (200) NOT NULL,
   slug            VARCHAR (200) NULL,
@@ -23,14 +23,14 @@ CREATE TABLE products (
 );
 
 -- Intermediate table for m2m relationship
-CREATE TABLE product_categories (
+CREATE TABLE IF NOT EXISTS product_categories (
   category_id UUID NOT NULL  REFERENCES categories (id),
   product_id  UUID NOT NULL  REFERENCES products (id),
   PRIMARY KEY (category_id, product_id)
 );
 
-
-CREATE TABLE images (
+-- Create images table
+CREATE TABLE IF NOT EXISTS images (
   id            UUID  DEFAULT uuid_generate_v4 () PRIMARY KEY,
   product_id    UUID NOT NULL REFERENCES products (id) ON DELETE CASCADE,
   path          VARCHAR (255) NOT NULL UNIQUE,
