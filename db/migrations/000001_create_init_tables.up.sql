@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS categories (
 -- Create products table
 CREATE TABLE IF NOT EXISTS products (
   id              UUID DEFAULT uuid_generate_v4 () PRIMARY KEY,
+  category_id     UUID NOT NULL REFERENCES categories (id)  ON DELETE CASCADE,
   name            VARCHAR (200) NOT NULL,
   slug            VARCHAR (200) NULL,
   description     TEXT,
@@ -20,13 +21,6 @@ CREATE TABLE IF NOT EXISTS products (
   available       BOOLEAN NOT NULL,
   created_at      TIMESTAMP DEFAULT NOW (),
   updated_at      TIMESTAMP NULL
-);
-
--- Intermediate table for m2m relationship
-CREATE TABLE IF NOT EXISTS product_categories (
-  category_id UUID NOT NULL  REFERENCES categories (id),
-  product_id  UUID NOT NULL  REFERENCES products (id),
-  PRIMARY KEY (category_id, product_id)
 );
 
 -- Create images table
