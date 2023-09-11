@@ -11,17 +11,16 @@ type Category struct {
 	ID				uuid.UUID			`db:"id" validate:"required,uuid"`
 	Name 			string 				`db:"name" validate:"required,lte=200"`
 	Slug			string				`db:"slug" validate:"lte=200"`
-	Products		[]Product			`db:"products"`
 	CreatedAt		time.Time			`db:"created_at"`
 	UpdatedAt		time.Time			`db:"updated_at"`
 }
 
 type Product struct{
 	ID  			uuid.UUID			`db:"id" validate:"required,uuid"`
-	Categories		[]Category			`db:"categories" validate:"required"`
+	Category		Category			`db:"category" validate:"required"`
 	Name			string 				`db:"name"  validate:"required,lte200"`
 	Slug			string				`db:"slug" validate:"lte=200"`
-	Images			[]Image				`db:"images"`
+	Images			Image				`db:"image"`
 	Description		string				`db:"description"`
 	Price			decimal.Decimal		`db:"price" validate:"gte=0"`
 	Available		bool				`db:"available" validate:"required"`
