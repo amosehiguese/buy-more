@@ -1,0 +1,111 @@
+{{ define "layout" }}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- font-awesome -->
+    <link
+      rel="stylesheet"
+      href="/static/fonts/fontawesome-free-5.12.0-web/css/all.min.css"
+    />
+    <!-- styles -->
+    <link rel="stylesheet" href="/static/css/styles.css" />
+
+    <!-- title -->
+    <title>Home | Buy More</title>
+  </head>
+  <body>
+    <!-- nav -->
+    <nav class="navbar">
+      <div class="nav-center">
+        <div>
+          <button class="toggle-nav">
+            <i class="fas fa-bars"></i>
+          </button>
+          <ul class="nav-links">
+            <li><a href="/" class="nav-link">Home</a></li>
+            <li><a href="/products" class="nav-link">Products</a></li>
+            <li><a href="/login" class="nav-link">login</a></li>
+          </ul>
+        </div>
+        <h4 class="text-slanted">Buy More</h4>
+
+        <div class="toggle-container">
+          <button class="toggle-cart">
+            <i class="fas fa-shopping-cart"></i>
+          </button>
+          <span class="cart-item-count">1</span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- hero -->
+    <section class="hero">
+      <div class="hero-container">
+        <h1 class="text-slanted">Not satisfied?</h1>
+        <h3>why not just buy more</h3>
+        <a href="/products" class="hero-btn">shop now</a>
+      </div>
+    </section>
+
+    <!-- sidebar -->
+    <div class="sidebar-overlay">
+      <aside class="sidebar">
+        <!-- close -->
+        <button class="sidebar-close">
+          <i class="fas fa-times"></i>
+        </button>
+
+        <!-- links -->
+        <ul class="sidebar-links">
+          <li>
+            <a href="/" class="sidebar-link">
+              <i class="fas fa-home fa-fw"></i>
+              home
+            </a>
+          </li>
+          <li>
+            <a href="/products" class="sidebar-link">
+              <i class="fas fa-couch fa-fw"></i>
+              products
+            </a>
+          </li>
+          <li>
+            <a href="/login" class="sidebar-link">
+              <i class="fas fa-book fa-fw"></i>
+              login
+            </a>
+          </li>
+        </ul>
+      </aside>
+    </div>
+
+    <!-- cart-overlay -->
+    <div class="cart-overlay">
+      <aside class="cart">
+        <button class="cart-close">
+          <i class="fas fa-times"></i>
+        </button>
+        <header>
+          <h3 class="text-slanted">your bag</h3>
+        </header>
+
+        <!-- cart items -->
+        <div class="cart-items"></div>
+
+        <!-- footer -->
+        <footer>
+          <h3 class="cart-total text-slanted">total : $12.99</h3>
+          <button class="cart-checkout btn">checkout</button>
+        </footer>
+      </aside>
+    </div>
+
+    <!-- contents -->
+    {{ template "content" . }}
+    <!--script  -->
+    <script src="/static/js/index.js"></script>
+  </body>
+</html>
+{{ end }}
