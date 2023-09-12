@@ -17,69 +17,10 @@
   </head>
   <body>
     <!-- nav -->
-    <nav class="navbar">
-      <div class="nav-center">
-        <div>
-          <button class="toggle-nav">
-            <i class="fas fa-bars"></i>
-          </button>
-          <ul class="nav-links">
-            <li><a href="/" class="nav-link">Home</a></li>
-            <li><a href="/products" class="nav-link">Products</a></li>
-            <li><a href="/login" class="nav-link">login</a></li>
-          </ul>
-        </div>
-        <img src="static/images/bm-white.png" alt="logo" class="nav-logo" />
-
-        <div class="toggle-container">
-          <button class="toggle-cart">
-            <i class="fas fa-shopping-cart"></i>
-          </button>
-          <span class="cart-item-count">1</span>
-        </div>
-      </div>
-    </nav>
-
-    <!-- hero -->
-    <section class="hero">
-      <div class="hero-container">
-        <h1 class="text-slanted">Not satisfied?</h1>
-        <h3>why not just buy more</h3>
-        <a href="/products" class="hero-btn">shop now</a>
-      </div>
-    </section>
+    {{ template "navbar"}}
 
     <!-- sidebar -->
-    <div class="sidebar-overlay">
-      <aside class="sidebar">
-        <!-- close -->
-        <button class="sidebar-close">
-          <i class="fas fa-times"></i>
-        </button>
-
-        <!-- links -->
-        <ul class="sidebar-links">
-          <li>
-            <a href="/" class="sidebar-link">
-              <i class="fas fa-home fa-fw"></i>
-              home
-            </a>
-          </li>
-          <li>
-            <a href="/products" class="sidebar-link">
-              <i class="fas fa-couch fa-fw"></i>
-              products
-            </a>
-          </li>
-          <li>
-            <a href="/login" class="sidebar-link">
-              <i class="fas fa-book fa-fw"></i>
-              login
-            </a>
-          </li>
-        </ul>
-      </aside>
-    </div>
+    {{ template "sidebar"}}
 
     <!-- cart-overlay -->
     <div class="cart-overlay">

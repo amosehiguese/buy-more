@@ -1,4 +1,12 @@
 {{ define "content" }}
+<section class="hero">
+  <div class="hero-container">
+    <h1 class="text-slanted">Not satisfied?</h1>
+    <h3>why not just buy more</h3>
+    <a href="/products" class="hero-btn">shop now</a>
+  </div>
+</section>
+
 <section class="section featured">
   <div class="title">
     <h2>featured</h2>
@@ -6,12 +14,13 @@
   </div>
   <div class="featured-center section-center">
     <!-- single product -->
+    {{ range . }}
     <article class="product">
       <div class="product-container">
-        <img src="/static/images/bg-image.jpg" alt="" class="product-img img" />
+        <img src="{{.ImagePath}}" alt="" class="product-img img" />
 
         <div class="product-icons">
-          <a href="product.html?id=1" class="product-icon">
+          <a href="/product?id={{.ID}}" class="product-icon">
             <i class="fas fa-search"></i>
           </a>
           <button class="product-cart-btn product-icon" data-id="1">
@@ -21,13 +30,11 @@
       </div>
       <footer>
         <p class="product-name">{{.Name}}</p>
-        <h4 class="product-price">$9.99</h4>
+        <h4 class="product-price">${{.Price}}</h4>
       </footer>
     </article>
+    {{ end }}
   </div>
-  {{ range . }}
-  <div class="h4">{{.Name}}</div>
-  {{end}}
   <a href="/products" class="btn">all products</a>
 </section>
 

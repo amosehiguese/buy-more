@@ -1,0 +1,26 @@
+{{define "navbar"}}
+
+<nav class="navbar">
+  <div class="nav-center">
+    <div>
+      <button class="toggle-nav">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/products" class="nav-link">Products</a></li>
+        <li><a href="/login" class="nav-link">Logout</a></li>
+      </ul>
+    </div>
+    <img src="static/images/bm-white.png" alt="logo" class="nav-logo" />
+
+    <div class="toggle-container">
+      <button class="toggle-cart">
+        <i class="fas fa-shopping-cart"></i>
+      </button>
+      <span class="cart-item-count">1</span>
+    </div>
+  </div>
+</nav>
+
+{{end}}

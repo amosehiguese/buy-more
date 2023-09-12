@@ -20,7 +20,7 @@ type Product struct{
 	CategoryID		uuid.UUID			`db:"category_id" validate:"required"`
 	Name			string 				`db:"name"  validate:"required,lte200"`
 	Slug			string				`db:"slug" validate:"lte=200"`
-	Image			Image				`db:"image"`
+	ImagePath		string				`db:"path"`
 	Description		string				`db:"description"`
 	Price			decimal.Decimal		`db:"price" validate:"gte=0"`
 	Available		bool				`db:"available" validate:"required"`
