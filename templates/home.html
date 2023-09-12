@@ -20,12 +20,12 @@
         </div>
       </div>
       <footer>
-        <p class="product-name">name</p>
+        <p class="product-name">{{.Name}}</p>
         <h4 class="product-price">$9.99</h4>
       </footer>
     </article>
   </div>
-  {{ range .Products}}
+  {{ range . }}
   <div class="h4">{{.Name}}</div>
   {{end}}
   <a href="/products" class="btn">all products</a>

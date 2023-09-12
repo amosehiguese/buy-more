@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/amosehiguese/buy-more/store"
@@ -9,7 +10,11 @@ import (
 
 func Home(w http.ResponseWriter, r *http.Request) {
 	q := store.GetQuery()
-	products, _ := q.ProductQueries.GetProducts()
+	products, err := q.ProductQueries.GetProducts()
+	if err != nil{
+		log.Println(err)
+	}
+	log.Println("got->", products)
 	tmpl.GenerateHTML(w, products, "layout","home")
 }
 

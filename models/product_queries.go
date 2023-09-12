@@ -1,6 +1,8 @@
 package models
 
 import (
+	"log"
+
 	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
 )
@@ -15,12 +17,14 @@ func (q *ProductQueries) CreatedAtDate() string {
 }
 
 func (q *ProductQueries) GetProducts() (*[]Product, error){
-	var products []Product
+	products := []Product{}
 
 	query := `SELECT * FROM products`
 	if err := q.Select(&products, query); err != nil {
 		return nil, err
 	}
+
+	log.Println("from q ->", products)
 
 	return &products, nil
 }
